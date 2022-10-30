@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Frontend Mentor | Time tracking dashboard</title>
+  <!-- TODO https://www.youtube.com/watch?v=vGSsTk2opZA&t=2s&ab_channel=%D0%9C%D0%B8%D1%85%D0%B0%D0%B8%D0%BB%D0%9D%D0%B5%D0%BF%D0%BE%D0%BC%D0%BD%D1%8F%D1%89%D0%B8%D0%B9 -->
+
+</head>
+
+<body>
+
+  <section class="dashboard">
+    <div class="dashboard__content">
+      <div class="dashboard__person">
+        <div class="info-card">
+          <img src="images/image-jeremy.png" alt="" class="info-card__photo">
+          <div class="info-card__text">
+            <p class="info-card__subtitle">Report for</p>
+            <h3 class="info-card__title">Jeremy Robson</h3>
+          </div>
+        </div>
+        <div class="view-selector">
+          <div class="view-selector__item"> Daily</div>
+          <div class="view-selector__item view-selector__item--active "> Weekly</div>
+          <div class="view-selector__item"> Monthly</div>
+
+
+        </div>
+      </div>
+      <div class="dashboard__item">
+        <article class="tracking-card">
+          <div class="tracking-card__header">
+            <h4 class="tracking-card__title"></h4>
+            <img class="tracking-card__menu" src="images/icon-ellipsis.svg" alt="menu">
+          </div>
+          <div class="tracking-card__body">
+            <div class="tracking-card__time"></div>
+            <div class="tracking-card__prev-period"></div>
+
+
+          </div>
+
+
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+  <script src="App.js"></script>
+</body>
+
+
+</html>
