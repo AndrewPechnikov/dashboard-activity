@@ -17,7 +17,7 @@
 	--orange-100: hsl(43, 84%, 65%);
 
 	/* typography */
-	--family: "Rubic", sans-serif;
+	--family: "Rubik", sans-serif;
 	--fs-base: 18px;
 	--weight-light: 300;
 	--weight-normal: 400;
@@ -83,11 +83,11 @@ body {
 .info-card__title {
 	font-weight: var(--weight-light);
 	margin: 0;
-	font-size: 12px;
 }
 .info-card__subtitle {
 	font-weight: var(--weight-light);
 	margin: -0.5rem 0 0;
+	font-size: 12px;
 }
 
 .view-selector {
@@ -115,16 +115,6 @@ body {
 	background-repeat: no-repeat;
 	background-position: 92% -8%;
 }
-
-.tracking-card {
-	background-color: var(--blue-800);
-	border-radius: var(--radius);
-
-	padding: 1.25rem;
-	position: relative;
-	bottom: -2px;
-}
-
 .dashboard__item--work {
 	background-color: var(--red-100);
 	background-image: url(images/icon-work.svg);
@@ -159,6 +149,15 @@ body {
 	background-color: var(--blue-500);
 }
 
+.tracking-card {
+	background-color: var(--blue-800);
+	border-radius: var(--radius);
+
+	padding: 1.25rem;
+	position: relative;
+	bottom: -2px;
+}
+
 .tracking-card__header,
 .tracking-card__body {
 	display: flex;
@@ -173,6 +172,11 @@ body {
 .tracking-card__title {
 	font-weight: var(--weight-normal);
 	font-size: var(--fs-base);
+	margin-bottom: 0;
+}
+
+.tracking-card__header {
+	margin-bottom: 1rem;
 }
 
 .tracking-card__time {
@@ -184,4 +188,58 @@ body {
 	font-weight: var(--weight-light);
 	font-size: 12px;
 	color: var(--blue-200);
+}
+
+@media screen and (min-width: 1024px) {
+	.dashboard__content {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.dashboard__person {
+		grid-row-start: 1;
+		grid-row-end: 3;
+		grid-column-start: 1;
+		grid-column-end: 2;
+		height: 100%;
+
+		display: flex;
+		flex-direction: column;
+	}
+
+	.info-card {
+		flex-direction: column;
+		align-items: flex-start;
+		flex-grow: 1;
+		justify-content: flex-start;
+	}
+
+	.info-card__title {
+		font-size: 30px;
+	}
+
+	.info-card__photo {
+		margin-bottom: 1.5rem;
+	}
+
+	.view-selector {
+		flex-direction: column;
+	}
+
+	.view-selector__item:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	.tracking-card__body {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.tracking-card__time {
+		margin-bottom: 0.75rem;
+		font-size: 48px;
+	}
+
+	.tracking-card__header {
+		margin-bottom: 0.75rem;
+	}
 }
