@@ -103,7 +103,7 @@ body {
 }
 
 .view-selector__item:hover,
-.view-selector__item:active {
+.view-selector__item--active {
 	color: white;
 }
 
