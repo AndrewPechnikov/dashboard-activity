@@ -1,30 +1,31 @@
-async function getDashboardData(url = '/data.json') {
+async function getDashboardData(url = "./data.json") {
 	const response = await fetch(url);
 	const data = await response.json();
-
 
 	return data;
 }
 
 class DashboardItem {
 	static PERIODS = {
-		daily: 'day',
-		weekly: 'week',
-		monthly: 'month'
-	}
+		daily: "day",
+		weekly: "week",
+		monthly: "month",
+	};
 
-	constructor(data, container = '.dashboard__content', view = "weekly") {
+	constructor(data, container = ".dashboard__content", view = "weekly") {
 		this.data = data;
-		this.container = document.querySelector(container)
+		this.container = document.querySelector(container);
 		this.view = view;
 		this._createMarkup();
 	}
 
 	_createMarkup() {
 		const { title, timeframes } = this.data;
-		const id = title.toLowerCase().replace(/ /g, '-');
+		const id = title.toLowerCase().replace(/ /g, "-");
 		const { current, previous } = timeframes[this.view.toLowerCase()];
-		this.container.insertAdjacentHTML('beforeend', `
+		this.container.insertAdjacentHTML(
+			"beforeend",
+			`
 			<div class= "dashboard__item  dashboard__item--${id}" >
 			<article class="tracking-card ">
 				<div class="tracking-card__header">
@@ -41,48 +42,39 @@ class DashboardItem {
 				</div>
 			</article>
 			</div>
-   `);
+   `
+		);
 
-		this.time = this.container.querySelector(`.dashboard__item--${id} .tracking-card__time`)
-		this.prev = this.container.querySelector(`.dashboard__item--${id} .tracking-card__prev-period`)
-
+		this.time = this.container.querySelector(`.dashboard__item--${id} .tracking-card__time`);
+		this.prev = this.container.querySelector(`.dashboard__item--${id} .tracking-card__prev-period`);
 	}
 
 	changeView(viev) {
+		console.log(this.prev);
+		console.log(this.time);
 
-		console.log(this.prev)
-		console.log(this.time)
-
-		this.view = viev.toLowerCase()
+		this.view = viev.toLowerCase();
 		const { current, previous } = this.data.timeframes[this.view.toLowerCase()];
 
-
-		this.time.innerText = `${current}hrs`
+		this.time.innerText = `${current}hrs`;
 		this.prev.innerText = `Last ${DashboardItem.PERIODS[this.view]} - ${previous}hrs`;
 	}
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+	getDashboardData().then((data) => {
+		const activities = data.map((activity) => new DashboardItem(activity));
 
-document.addEventListener('DOMContentLoaded', () => {
-	getDashboardData()
-		.then(data => {
-			const activities = data.map(activity => new DashboardItem(activity));
+		const selectors = document.querySelectorAll(".view-selector__item");
+		selectors.forEach((selector) => {
+			selector.addEventListener("click", function () {
+				selectors.forEach((sel) => sel.classList.remove("view-selector__item--active"));
+				selector.classList.add("view-selector__item--active");
 
-			const selectors = document.querySelectorAll('.view-selector__item');
-			selectors.forEach(selector => {
-				selector.addEventListener('click', function () {
-					selectors.forEach(sel => sel.classList.remove('view-selector__item--active'))
-					selector.classList.add('view-selector__item--active');
+				const currentView = selector.innerText.trim().toLowerCase();
 
-					const currentView = selector.innerText.trim().toLowerCase();
-
-					activities.forEach(activity => activity.changeView(currentView))
-				})
-
-			})
-
-
-		})
-
-
-})
+				activities.forEach((activity) => activity.changeView(currentView));
+			});
+		});
+	});
+});
